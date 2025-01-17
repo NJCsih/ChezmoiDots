@@ -1,0 +1,106 @@
+# Start stuff with sway --------------------------------------------------------
+
+# Todo:
+# - [ ] setting split direction
+# - [ ] Setting layout
+# - [ ] Selecting parrent and child
+# - [ ] Define outputs, may be better to script based off count of monitors connected
+# - [ ] Scratchpad
+# - [ ] Handle swww with systemd stuff to return wallpaper rotation
+
+
+# Start stuff:
+#exec workspace_helper init                                 # For kanata
+exec 'swww-daemon & exit' | sh
+#exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-1905773-fumiko-rokito01.jpg # Wallpapers
+exec --no-startup-id swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-PerthBridge.jpg
+exec systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service
+
+# Held-over keybinds
+bindsym Mod4+p exec grim -g "$(slurp)" - | wl-copy         # take screenshot
+# bindsym Mod4+p exec grim -g "$(slurp)" - | tee { bytes length | into filesize | print } | magick png:- -quality 85% jpg:- | tee { bytes length | into filesize | print } | wl-copy
+bindsym Mod4+d exec --no-startup-id "rofi -show drun"      # rofi launcher
+bindsym Mod4+Shift+d exec --no-startup-id "rofi -show run" # rofi launcher
+
+bindsym Mod4+f fullscreen
+bindsym Mod4+Shift+space floating toggle
+bindsym Mod4+space focus mode_toggle
+
+floating_modifier Mod4 normal
+bindsym Mod4+Shift+c reload
+
+bindsym Mod4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Set Colors and graphical options: --------------------------------------------
+
+# Colors                border  bground text    indicator child_border
+client.focused          #83a598 #458588 #FFFFFF #689D6A   #458588
+client.focused_inactive #83a598 #83a598 #FFFFFF #458588   #5F676A00
+client.unfocused        #83a598 #83a598 #FFFFFF #292D2E   #2222f200
+client.urgent           #FB4934 #CC241D #FFFFFF #CC241D   #CC241D
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.background       #FFFFFF
+
+# Gaps and stuff
+#default_border pixel 1
+default_border pixel 2
+gaps inner 1
+#gaps outer -5
+gaps outer -6
+smart_gaps on
+smart_borders on
+
+# Super is mod+alt Mod4 + Mod1
+bindsym Mod4+Return exec "kitty"    # Give me a terminal
+bindsym Mod4+Shift+q kill           # murder a pane
+bindsym Mod4+h focus left           # > Basic movement
+bindsym Mod4+j focus down           # |
+bindsym Mod4+k focus up             # |
+bindsym Mod4+l focus right          # >
+bindsym Mod4+Shift+h move left
+bindsym Mod4+Shift+j move down
+bindsym Mod4+Shift+k move up
+bindsym Mod4+Shift+l move right
+bindsym Mod4+e layout toggle split  # Go back to split layout
+bindsym Mod4+a focus parent         # Focus parrent
+bindsym Mod4+r mode "default"       # Leave resize mode
+
+# Switch to workspace
+bindsym Mod4+1 workspace number 1
+bindsym Mod4+2 workspace number 2
+bindsym Mod4+3 workspace number 3
+bindsym Mod4+4 workspace number 4
+bindsym Mod4+5 workspace number 5
+bindsym Mod4+6 workspace number 6
+bindsym Mod4+7 workspace number 7
+bindsym Mod4+8 workspace number 8
+bindsym Mod4+9 workspace number 9
+bindsym Mod4+0 workspace number 10
+bindsym Mod4+Shift+1 move container to workspace number 1
+bindsym Mod4+Shift+2 move container to workspace number 2
+bindsym Mod4+Shift+3 move container to workspace number 3
+bindsym Mod4+Shift+4 move container to workspace number 4
+bindsym Mod4+Shift+5 move container to workspace number 5
+bindsym Mod4+Shift+6 move container to workspace number 6
+bindsym Mod4+Shift+7 move container to workspace number 7
+bindsym Mod4+Shift+8 move container to workspace number 8
+bindsym Mod4+Shift+9 move container to workspace number 9
+bindsym Mod4+Shift+0 move container to workspace number 10
+
+
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        # cc rec is approx 0.8 to match kitty
+        background #000000cc
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+include @sysconfdir@/sway/config.d/*
