@@ -1,4 +1,5 @@
-# Start stuff with sway --------------------------------------------------------
+# Environment stuff for sway to cooperate
+exec systemctl --user import-environment WAYLAND_DISPLAY
 
 # Todo:
 # - [ ] setting split direction
@@ -11,9 +12,6 @@
 
 # Start stuff:
 #exec workspace_helper init                                 # For kanata
-exec 'swww-daemon & exit' | sh
-#exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-1905773-fumiko-rokito01.jpg # Wallpapers
-exec --no-startup-id swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-PerthBridge.jpg
 exec systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service
 
 # Held-over keybinds
@@ -21,6 +19,9 @@ bindsym Mod4+p exec grim -g "$(slurp)" - | wl-copy         # take screenshot
 # bindsym Mod4+p exec grim -g "$(slurp)" - | tee { bytes length | into filesize | print } | magick png:- -quality 85% jpg:- | tee { bytes length | into filesize | print } | wl-copy
 bindsym Mod4+d exec --no-startup-id "rofi -show drun"      # rofi launcher
 bindsym Mod4+Shift+d exec --no-startup-id "rofi -show run" # rofi launcher
+
+bindsym Mod4+w exec systemctl --user restart swww-switch
+bindsym Mod4+Shift+w exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/krkl3cc7ipyn8s0iinxrj0mxnqk8gx4p-PerthBridge.jpg
 
 bindsym Mod4+f fullscreen
 bindsym Mod4+Shift+space floating toggle
@@ -34,19 +35,40 @@ bindsym Mod4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 # Set Colors and graphical options: --------------------------------------------
 
 # Colors                border  bground text    indicator child_border
-client.focused          #83a598 #458588 #FFFFFF #689D6A   #458588
-client.focused_inactive #83a598 #83a598 #FFFFFF #458588   #5F676A00
-client.unfocused        #83a598 #83a598 #FFFFFF #292D2E   #2222f200
-client.urgent           #FB4934 #CC241D #FFFFFF #CC241D   #CC241D
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+#client.focused          #83a598 #458588 #FFFFFF #689D6A   #458588
+#client.focused_inactive #83a598 #83a598 #FFFFFF #458588   #5F676A00
+#client.unfocused        #83a598 #83a598 #FFFFFF #292D2E   #2222f200
+#client.urgent           #FB4934 #CC241D #FFFFFF #CC241D   #CC241D
+#client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
+
+# Colors                   border  bground text    indicator child_border
+client.focused             #ebdbb2 #ebdbb2 #282828 #ebdbb2
+client.focused_inactive    #282828 #282828 #ebdbb2 #282828
+client.unfocused           #282828 #282828 #ebdbb2 #282828
+client.urgent              #282828 #282828 #ebdbb2 #282828
+
+# Swayfx stuff:
+corner_radius 10
+
+blur enable
+
+shadows on
+shadow_blur_radius 30
+shadow_color #0000007F
+
+default_dim_inactive 0.2
+dim_inactive_colors.unfocused #000000FF
+dim_inactive_colors.urgent #900000FF
+
+# TODO: Make a nu script which handles window movement depending on number and type of monitors connected (this do be a laptop after all)
 
 # Gaps and stuff
 #default_border pixel 1
 default_border pixel 2
-gaps inner 1
+gaps inner 2
 #gaps outer -5
-gaps outer -6
+#gaps outer -6
 smart_gaps on
 smart_borders on
 
@@ -96,10 +118,7 @@ bar {
     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        # cc rec is approx 0.8 to match kitty
-        background #000000cc
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        swaybar_command waybar
     }
 }
 
