@@ -1,0 +1,99 @@
+* {
+  min-height: 0;
+
+  border: none;
+
+  font-family: Fira Code;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+window#waybar {
+  padding: 0px;
+
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+#workspaces {
+  margin-top: 0px;
+  padding-left: 0px;
+
+  background: none;
+}
+
+#workspaces button {
+  margin-right: 5px;
+  padding-left: 4px;
+  padding-right: 12px;
+
+  /*border: 1px solid #928374;*/
+  border: 1px solid #ebdbb2;
+  border-radius: 2px;
+
+  /*background: #282828;*/
+  /*color: #928374;*/
+  color: #ebdbb2;
+}
+
+/* TODO: This dont work? Hover does */
+#workspaces button.active {
+  border-color: #ebdbb2;
+  color: #ebdbb2;
+}
+
+#workspaces button:hover {
+  border-color: #ebdbb2;
+  color: #ebdbb2;
+
+  transition-duration: 500ms;
+}
+
+#workspaces button.urgent {
+  border-color: #cc241d;
+  color: #cc241d;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#backlight,
+#language,
+#battery {
+  margin-top: 0px;
+
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border: 1px solid #ebdbb2;
+  border-radius: 2px;
+
+  color: #ebdbb2;
+}
+
+#battery {
+  margin-right: 0px;
+}
+
+#battery.charging,
+#battery.plugged {
+  /*background-color: #98971a;*/
+  color: #ebdbb2;
+}
+
+@keyframes blink {
+  to {
+    background: none;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background: #cc241d;
+
+  animation-name: blink;
+  animation-duration: 500ms;
+  animation-timing-function: steps(50);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
