@@ -17,11 +17,11 @@ exec systemctl --user import-environment PATH && systemctl --user restart xdg-de
 # Held-over keybinds
 bindsym Mod4+p exec grim -g "$(slurp)" - | wl-copy         # take screenshot
 # bindsym Mod4+p exec grim -g "$(slurp)" - | tee { bytes length | into filesize | print } | magick png:- -quality 85% jpg:- | tee { bytes length | into filesize | print } | wl-copy
-bindsym Mod4+d exec --no-startup-id "rofi -show drun"      # rofi launcher
-bindsym Mod4+Shift+d exec --no-startup-id "rofi -show run" # rofi launcher
+bindsym Mod4+s exec --no-startup-id "rofi -show drun"      # rofi launcher
+bindsym Mod4+Shift+s exec --no-startup-id "rofi -show run" # rofi launcher
 
-bindsym Mod4+w exec systemctl --user restart swww-switch
-bindsym Mod4+Shift+w exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/krkl3cc7ipyn8s0iinxrj0mxnqk8gx4p-PerthBridge.jpg
+bindsym Mod4+b exec systemctl --user restart swww-switch
+bindsym Mod4+Shift+b exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-AS-saiko-01-Seeker.jpg
 
 bindsym Mod4+f fullscreen
 bindsym Mod4+Shift+space floating toggle
@@ -30,7 +30,7 @@ bindsym Mod4+space focus mode_toggle
 floating_modifier Mod4 normal
 bindsym Mod4+Shift+c reload
 
-bindsym Mod4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#bindsym Mod4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Set Colors and graphical options: --------------------------------------------
 
@@ -52,14 +52,11 @@ client.urgent              #282828 #282828 #ebdbb2 #282828
 corner_radius 10
 
 blur enable
+#blur disable
 
 shadows on
 shadow_blur_radius 30
 shadow_color #0000007F
-
-default_dim_inactive 0.2
-dim_inactive_colors.unfocused #000000FF
-dim_inactive_colors.urgent #900000FF
 
 # TODO: Make a nu script which handles window movement depending on number and type of monitors connected (this do be a laptop after all)
 
@@ -75,17 +72,17 @@ smart_borders on
 # Super is mod+alt Mod4 + Mod1
 bindsym Mod4+Return exec "kitty"    # Give me a terminal
 bindsym Mod4+Shift+q kill           # murder a pane
-bindsym Mod4+h focus left           # > Basic movement
-bindsym Mod4+j focus down           # |
-bindsym Mod4+k focus up             # |
-bindsym Mod4+l focus right          # >
-bindsym Mod4+Shift+h move left
-bindsym Mod4+Shift+j move down
-bindsym Mod4+Shift+k move up
-bindsym Mod4+Shift+l move right
-bindsym Mod4+e layout toggle split  # Go back to split layout
-bindsym Mod4+a focus parent         # Focus parrent
-bindsym Mod4+r mode "default"       # Leave resize mode
+bindsym Mod4+m focus left           # > Basic movement
+bindsym Mod4+n focus down           # |
+bindsym Mod4+e focus up             # |
+bindsym Mod4+i focus right          # >
+bindsym Mod4+Shift+m move left
+bindsym Mod4+Shift+n move down
+bindsym Mod4+Shift+e move up
+bindsym Mod4+Shift+i move right
+bindsym Mod4+x layout toggle split  # Go back to split layout
+bindsym Mod4+c focus parent         # Focus parrent
+bindsym Mod4+d mode "default"       # Leave resize mode
 
 # Switch to workspace
 bindsym Mod4+1 workspace number 1
