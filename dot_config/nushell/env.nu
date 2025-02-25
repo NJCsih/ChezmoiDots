@@ -3,7 +3,7 @@
 # version = "0.100.0"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -105,8 +105,6 @@ zoxide init nushell | save -f ~/.local/share/zoxide/init.nu
 # Atuin
 mkdir ~/.local/share/atuin/
 atuin init nu --disable-up-arrow | save -f ~/.local/share/atuin/init.nu
-
-
 
 
 
