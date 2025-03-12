@@ -17,8 +17,8 @@ exec systemctl --user import-environment PATH && systemctl --user restart xdg-de
 # Held-over keybinds
 bindsym Mod4+p exec grim -g "$(slurp)" - | wl-copy         # take screenshot
 # bindsym Mod4+p exec grim -g "$(slurp)" - | tee { bytes length | into filesize | print } | magick png:- -quality 85% jpg:- | tee { bytes length | into filesize | print } | wl-copy
-bindsym Mod4+s exec --no-startup-id "rofi -show drun"      # rofi launcher
-bindsym Mod4+Shift+s exec --no-startup-id "rofi -show run" # rofi launcher
+bindsym Mod4+s exec --no-startup-id rofi -show drun      # rofi launcher
+bindsym Mod4+Shift+s exec --no-startup-id rofi -show run # rofi launcher
 
 bindsym Mod4+b exec systemctl --user restart swww-switch
 bindsym Mod4+Shift+b exec swww img /run/current-system/sw/share/wallpapers/system-wallpapers/*-AS-saiko-01-Seeker.jpg
