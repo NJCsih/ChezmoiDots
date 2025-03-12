@@ -895,6 +895,9 @@ $env.config = {
 
 # My Configuration -------------------------------------------------------------
 
+# Add custom scripts
+use ./bin *
+
 # Per-Device stuff:
 source ./per_device.nu
 
@@ -907,11 +910,10 @@ source ~/.local/share/zoxide/init.nu
 # Atuin
 source ~/.local/share/atuin/init.nu
 
-# Source my aliases
-source ./aliases.nu
-
 # Aliases ----------------------
-alias nd = nix develop -c "nu"
+alias nd = nix develop -c "nu";
+alias v = nvim;
+alias y = yazi;
 
 
 # Startup -----------------

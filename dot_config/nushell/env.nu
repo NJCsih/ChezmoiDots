@@ -92,14 +92,12 @@ $env.NU_PLUGIN_DIRS = [
 
 # My config --------------------------------------------------------------------
 
-# Add custom scripts
-$env.path ++= ["~/.config/nushell/bin"]
-
 # Starship
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 
 # Zoxide
+mkdir ~/.local/share/zoxide
 zoxide init nushell | save -f ~/.local/share/zoxide/init.nu
 
 # Atuin
