@@ -1,6 +1,8 @@
 # Environment stuff for sway to cooperate
 exec systemctl --user import-environment WAYLAND_DISPLAY
 
+exec swww-daemon
+
 # Todo:
 # - [ ] setting split direction
 # - [ ] Setting layout
