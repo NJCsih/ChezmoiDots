@@ -29,6 +29,8 @@ bindsym Mod4+f fullscreen
 bindsym Mod4+Shift+space floating toggle
 bindsym Mod4+space focus mode_toggle
 
+bindsym Mod4+v layout tabbed
+
 floating_modifier Mod4 normal
 bindsym Mod4+Shift+c reload
 
