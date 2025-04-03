@@ -1,5 +1,5 @@
 #!/run/current-system/sw/bin/nu
-# Locks the device and suspends
+# Changes the wallpapers
 
 export def locks [] {
     lock;
@@ -17,8 +17,9 @@ export def lock [] {
     } # Else we do got wallpapers
 
     # Pick a wallpaper at random from folder
-    let wallpapers = ls $wallpaper_path | shuffle;
-    let chosen_wp_path = ($wallpapers | get 0.name);
+    let wallpapers = ls $wallpaper_path;
+    let chosen_wp_index = random int 0..($wallpapers | length);
+    let chosen_wp_path = ($wallpapers | get $chosen_wp_index | get name);
 
     # Set that as the image for swaylock and exit
     swaylock -i $chosen_wp_path
