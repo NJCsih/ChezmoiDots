@@ -88,7 +88,7 @@ bindsym Mod4+Shift+e move up
 bindsym Mod4+Shift+i move right
 bindsym Mod4+x layout toggle split  # Go back to split layout
 bindsym Mod4+c focus parent         # Focus parrent
-bindsym Mod4+d mode "default"       # Leave resize mode
+bindsym Mod4+d focus child
 
 # Switch to workspace
 bindsym Mod4+1 workspace number 1
