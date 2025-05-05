@@ -1,4 +1,5 @@
 export use ./birdnet.nu *
+export use ./follower.nu *
 export use ./ell.nu *
 export use ./locker.nu *
 export use ./okular.nu *
